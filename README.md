@@ -1,10 +1,10 @@
-# modal
+# Vue 2 Posts Application
 
-> Modal 
+> Posts application
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
