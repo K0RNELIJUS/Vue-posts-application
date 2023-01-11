@@ -1,0 +1,51 @@
+{
+  "authors": [
+    {
+      "id": 1,
+      "name": "Peter",
+      "created_at": "2022-12-10 18:10:03",
+      "updated_at": "2022-11-23 09:20:04"
+    },
+    {
+      "id": 2,
+      "name": "John",
+      "created_at": "2022-12-10 18:10:03",
+      "updated_at": "2022-11-23 09:20:04"
+    },
+    {
+      "id": 3,
+      "name": "Tom",
+      "created_at": "2022-12-10 18:10:03",
+      "updated_at": "2022-11-23 09:20:04"
+    }
+  ],
+
+  "articles": [
+    {
+      "id": 1,
+      "title": "Title 1",
+      "body": "Duis mauris odio, commodo sed molestie eget, dignissim et nisl. Vestibulum tempus justo malesuada laoreet lacinia. Mauris in imperdiet nisl, ut efficitur sapien. Nullam enim arcu, varius ut neque a, feugiat dapibus risus. Praesent varius eros sed turpis rhoncus tempor. Donec nunc leo, porta et laoreet et, convallis at ex. Pellentesque iaculis dignissim ullamcorper.",
+      "author": 3,
+      "created_at": "2022-12-10 18:10:03",
+      "updated_at": "2022-11-23 09:20:04"
+    },
+
+    {
+      "id": 2,
+      "title": "Title 2",
+      "body": "Duis mauris odio, commodo sed molestie eget, dignissim et nisl. Vestibulum tempus justo malesuada laoreet lacinia. Mauris in imperdiet nisl, ut efficitur sapien. Nullam enim arcu, varius ut neque a, feugiat dapibus risus. Praesent varius eros sed turpis rhoncus tempor. Donec nunc leo, porta et laoreet et, convallis at ex. Pellentesque iaculis dignissim ullamcorper.",
+      "author": 1,
+      "created_at": "2022-12-10 18:10:03",
+      "updated_at": "2022-11-23 09:20:04"
+    },
+
+    {
+      "id": 3,
+      "title": "Title 3",
+      "body": "Duis mauris odio, commodo sed molestie eget, dignissim et nisl. Vestibulum tempus justo malesuada laoreet lacinia. Mauris in imperdiet nisl, ut efficitur sapien. Nullam enim arcu, varius ut neque a, feugiat dapibus risus. Praesent varius eros sed turpis rhoncus tempor. Donec nunc leo, porta et laoreet et, convallis at ex. Pellentesque iaculis dignissim ullamcorper.",
+      "author": 2,
+      "created_at": "2022-12-10 18:10:03",
+      "updated_at": "2022-11-23 09:20:04"
+    }
+  ]
+}
