@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer is-fullheight mt-auto">
+  <footer class="footer mt-auto">
     <div class="content has-text-centered">
       <p>
         Built by
