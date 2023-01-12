@@ -2,50 +2,103 @@
   "authors": [
     {
       "id": 1,
-      "name": "Peter",
-      "created_at": "2022-12-10 18:10:03",
+      "name": " John Smith",
+      "created_at": "2022-06-10 18:10:03",
       "updated_at": "2022-11-23 09:20:04"
     },
     {
       "id": 2,
-      "name": "John",
-      "created_at": "2022-12-10 18:10:03",
+      "name": "Emily Davis",
+      "created_at": "2022-05-10 18:10:03",
       "updated_at": "2022-11-23 09:20:04"
     },
     {
       "id": 3,
-      "name": "Tom",
-      "created_at": "2022-12-10 18:10:03",
-      "updated_at": "2022-11-23 09:20:04"
+      "name": "Michael Brown",
+      "created_at": "2022-01-10 18:10:03",
+      "updated_at": ""
     }
   ],
 
   "articles": [
     {
       "id": 1,
-      "title": "Title 1",
-      "body": "Duis mauris odio, commodo sed molestie eget, dignissim et nisl. Vestibulum tempus justo malesuada laoreet lacinia. Mauris in imperdiet nisl, ut efficitur sapien. Nullam enim arcu, varius ut neque a, feugiat dapibus risus. Praesent varius eros sed turpis rhoncus tempor. Donec nunc leo, porta et laoreet et, convallis at ex. Pellentesque iaculis dignissim ullamcorper.",
+      "title": "IoT in the Supply Chain: Improving Traceability",
+      "body": "The Internet of Things (IoT) is transforming the way we manage supply chains. By connecting devices and sensors to the internet, companies can now track and monitor their products in real-time. From tracking inventory levels to monitoring the location of cargo, IoT technology is improving traceability and transparency in the supply chain. This article will explore the ways in which IoT is being used in the supply chain, and the benefits it offers to businesses and consumers.",
       "author": 3,
-      "created_at": "2022-12-10 18:10:03",
+      "created_at": "2022-06-10 18:10:03",
       "updated_at": "2022-11-23 09:20:04"
     },
 
     {
       "id": 2,
-      "title": "Title 2",
-      "body": "Duis mauris odio, commodo sed molestie eget, dignissim et nisl. Vestibulum tempus justo malesuada laoreet lacinia. Mauris in imperdiet nisl, ut efficitur sapien. Nullam enim arcu, varius ut neque a, feugiat dapibus risus. Praesent varius eros sed turpis rhoncus tempor. Donec nunc leo, porta et laoreet et, convallis at ex. Pellentesque iaculis dignissim ullamcorper.",
+      "title": "The Role of IoT in the Future of Agriculture",
+      "body": "The Internet of Things (IoT) has the potential to revolutionize the way we approach agriculture. By connecting devices and sensors to the internet, farmers can now monitor and control their operations with greater precision and efficiency. From monitoring soil moisture levels to controlling irrigation systems, IoT technology is improving crop yields and reducing water consumption. This article will explore the ways in which IoT is being used in agriculture, and the benefits it offers to farmers and the environment.",
       "author": 1,
-      "created_at": "2022-12-10 18:10:03",
-      "updated_at": "2022-11-23 09:20:04"
+      "created_at": "2022-05-10 18:10:03",
+      "updated_at": "2022-12-23 09:20:04"
     },
 
     {
       "id": 3,
-      "title": "Title 3",
-      "body": "Duis mauris odio, commodo sed molestie eget, dignissim et nisl. Vestibulum tempus justo malesuada laoreet lacinia. Mauris in imperdiet nisl, ut efficitur sapien. Nullam enim arcu, varius ut neque a, feugiat dapibus risus. Praesent varius eros sed turpis rhoncus tempor. Donec nunc leo, porta et laoreet et, convallis at ex. Pellentesque iaculis dignissim ullamcorper.",
+      "title": "IoT and the Smart Home: Making Life Easier",
+      "body": "The smart home is one of the most exciting applications of the Internet of Things (IoT). With the ability to connect devices and appliances to the internet, we can now control our homes from anywhere, at any time. From turning off lights to adjusting the thermostat, the smart home is making life easier for homeowners. In this article, we will explore the ways in which IoT is being used in the smart home, and the benefits it offers to homeowners.",
       "author": 2,
-      "created_at": "2022-12-10 18:10:03",
+      "created_at": "2022-01-10 18:10:03",
+      "updated_at": ""
+    },
+    {
+      "id": 4,
+      "title": "IoT in the Supply Chain: Improving Traceability",
+      "body": "The Internet of Things (IoT) is transforming the way we manage supply chains. By connecting devices and sensors to the internet, companies can now track and monitor their products in real-time. From tracking inventory levels to monitoring the location of cargo, IoT technology is improving traceability and transparency in the supply chain. This article will explore the ways in which IoT is being used in the supply chain, and the benefits it offers to businesses and consumers.",
+      "author": 3,
+      "created_at": "2022-06-10 18:10:03",
       "updated_at": "2022-11-23 09:20:04"
+    },
+
+    {
+      "id": 5,
+      "title": "The Role of IoT in the Future of Agriculture",
+      "body": "The Internet of Things (IoT) has the potential to revolutionize the way we approach agriculture. By connecting devices and sensors to the internet, farmers can now monitor and control their operations with greater precision and efficiency. From monitoring soil moisture levels to controlling irrigation systems, IoT technology is improving crop yields and reducing water consumption. This article will explore the ways in which IoT is being used in agriculture, and the benefits it offers to farmers and the environment.",
+      "author": 1,
+      "created_at": "2022-05-10 18:10:03",
+      "updated_at": "2022-12-23 09:20:04"
+    },
+
+    {
+      "id": 6,
+      "title": "IoT and the Smart Home: Making Life Easier",
+      "body": "The smart home is one of the most exciting applications of the Internet of Things (IoT). With the ability to connect devices and appliances to the internet, we can now control our homes from anywhere, at any time. From turning off lights to adjusting the thermostat, the smart home is making life easier for homeowners. In this article, we will explore the ways in which IoT is being used in the smart home, and the benefits it offers to homeowners.",
+      "author": 2,
+      "created_at": "2022-01-10 18:10:03",
+      "updated_at": ""
+    },
+
+    {
+      "id": 7,
+      "title": "IoT in the Supply Chain: Improving Traceability",
+      "body": "The Internet of Things (IoT) is transforming the way we manage supply chains. By connecting devices and sensors to the internet, companies can now track and monitor their products in real-time. From tracking inventory levels to monitoring the location of cargo, IoT technology is improving traceability and transparency in the supply chain. This article will explore the ways in which IoT is being used in the supply chain, and the benefits it offers to businesses and consumers.",
+      "author": 3,
+      "created_at": "2022-06-10 18:10:03",
+      "updated_at": "2022-11-23 09:20:04"
+    },
+
+    {
+      "id": 8,
+      "title": "The Role of IoT in the Future of Agriculture",
+      "body": "The Internet of Things (IoT) has the potential to revolutionize the way we approach agriculture. By connecting devices and sensors to the internet, farmers can now monitor and control their operations with greater precision and efficiency. From monitoring soil moisture levels to controlling irrigation systems, IoT technology is improving crop yields and reducing water consumption. This article will explore the ways in which IoT is being used in agriculture, and the benefits it offers to farmers and the environment.",
+      "author": 1,
+      "created_at": "2022-05-10 18:10:03",
+      "updated_at": "2022-12-23 09:20:04"
+    },
+
+    {
+      "id": 9,
+      "title": "IoT and the Smart Home: Making Life Easier",
+      "body": "The smart home is one of the most exciting applications of the Internet of Things (IoT). With the ability to connect devices and appliances to the internet, we can now control our homes from anywhere, at any time. From turning off lights to adjusting the thermostat, the smart home is making life easier for homeowners. In this article, we will explore the ways in which IoT is being used in the smart home, and the benefits it offers to homeowners.",
+      "author": 2,
+      "created_at": "2022-01-10 18:10:03",
+      "updated_at": ""
     }
   ]
 }
