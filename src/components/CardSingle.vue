@@ -35,7 +35,6 @@ export default {
       edit: false
     };
   },
-  methods: {},
   computed: {
     findAuthor() {
       let author = this.authors.filter(
