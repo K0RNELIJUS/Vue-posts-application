@@ -1,5 +1,8 @@
 <template>
-  <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+  <nav
+    class="breadcrumb has-arrow-separator px-5 pt-5 mb-0"
+    aria-label="breadcrumbs"
+  >
     <ul>
       <li><a href="/">All Posts</a></li>
 
