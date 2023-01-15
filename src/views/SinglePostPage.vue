@@ -1,32 +1,27 @@
 <template>
-  <section class="section">
+  <section class="section is-fullheight">
     <div class="columns">
       <div class="column">
-        <CardSingle
-          :isPrimary="true"
-          :authors="allAuthors"
-          :post="singlePost"
-        />
+        <Card :isPrimary="true" :authors="allAuthors" :post="singlePost" />
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import CardSingle from '../components/CardSingle.vue';
+import Card from '../components/Card.vue';
 // Vuex
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  components: { CardSingle },
+  name: 'single-post-page',
+  components: { Card },
   data() {
     return {
       id: this.$route.params.id
     };
   },
-  methods: {
-    ...mapActions(['fetchPost', 'fetchAuthors'])
-  },
+  methods: { ...mapActions(['fetchPost', 'fetchAuthors']) },
 
   computed: { ...mapGetters(['singlePost', 'allAuthors']) },
 
