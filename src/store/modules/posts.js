@@ -20,13 +20,18 @@ const actions = {
   async fetchPost({ commit }, id) {
     const { data } = await axios.get(`http://localhost:3000/articles/${id}`);
     commit('setSinglePost', data);
+  },
+
+  resetSinglePost({ commit }) {
+    commit('resetSinglePost');
   }
 };
 
 const mutations = {
   setPosts: (state, posts) => (state.posts = posts),
 
-  setSinglePost: (state, post) => (state.singlePost = post)
+  setSinglePost: (state, post) => (state.singlePost = post),
+  resetSinglePost: state => (state.singlePost = {})
 };
 
 export default {
