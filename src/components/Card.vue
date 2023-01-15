@@ -12,19 +12,11 @@
         </div>
         <time datetime="2016-1-1">{{ latestDate }}</time>
       </div>
-
-      <div v-if="isPrimary" class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-        iaculis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris.
-        <br />
-        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
+      <slot v-if="isPrimary" class="card-content">
+        <div class="content">{{ post.body }}</div>
+      </slot>
     </div>
     <footer class="card-footer">
-      <div v-if="isPrimary">
-        <a href="#" class="card-footer-item">Save</a>
-      </div>
       <a href="#" class="card-footer-item">Edit</a>
       <a href="#" class="card-footer-item is-danger">Delete</a>
     </footer>
