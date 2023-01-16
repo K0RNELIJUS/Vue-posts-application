@@ -19,7 +19,6 @@
       "updated_at": ""
     }
   ],
-
   "articles": [
     {
       "id": 1,
@@ -29,7 +28,6 @@
       "created_at": "2022-06-10 18:10:03",
       "updated_at": "2022-11-23 09:20:04"
     },
-
     {
       "id": 2,
       "title": "The Role of IoT in the Future of Agriculture",
@@ -38,7 +36,6 @@
       "created_at": "2022-05-10 18:10:03",
       "updated_at": "2022-12-23 09:20:04"
     },
-
     {
       "id": 3,
       "title": "IoT and the Smart Home: Making Life Easier",
@@ -55,7 +52,6 @@
       "created_at": "2022-06-10 18:10:03",
       "updated_at": "2022-11-23 09:20:04"
     },
-
     {
       "id": 5,
       "title": "The Role of IoT in the Future of Agriculture",
@@ -64,7 +60,6 @@
       "created_at": "2022-05-10 18:10:03",
       "updated_at": "2022-12-23 09:20:04"
     },
-
     {
       "id": 6,
       "title": "IoT and the Smart Home: Making Life Easier",
@@ -73,7 +68,6 @@
       "created_at": "2022-01-10 18:10:03",
       "updated_at": ""
     },
-
     {
       "id": 7,
       "title": "IoT in the Supply Chain: Improving Traceability",
@@ -82,7 +76,6 @@
       "created_at": "2022-06-10 18:10:03",
       "updated_at": "2022-11-23 09:20:04"
     },
-
     {
       "id": 8,
       "title": "The Role of IoT in the Future of Agriculture",
@@ -91,7 +84,6 @@
       "created_at": "2022-05-10 18:10:03",
       "updated_at": "2022-12-23 09:20:04"
     },
-
     {
       "id": 9,
       "title": "IoT and the Smart Home: Making Life Easier",
@@ -99,6 +91,14 @@
       "author": 2,
       "created_at": "2022-01-10 18:10:03",
       "updated_at": ""
+    },
+    {
+      "title": "Hello",
+      "body": "Test",
+      "author": 2,
+      "created_at": "2023-01-16 16:47:52",
+      "updated_at": "",
+      "id": 10
     }
   ]
 }
