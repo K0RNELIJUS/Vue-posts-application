@@ -1,11 +1,13 @@
 <template>
-  <section class="section is-fullheight">
-    <div class="columns">
-      <div class="column">
-        <Card :isPrimary="true" :authors="allAuthors" :post="singlePost" />
+  <main>
+    <section class="section fullheight">
+      <div class="columns">
+        <div class="column">
+          <Card :isPrimary="true" :authors="allAuthors" :post="singlePost" />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </template>
 
 <script>
@@ -32,4 +34,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fullheight {
+  height: calc(100vh - 380px);
+}
+</style>
