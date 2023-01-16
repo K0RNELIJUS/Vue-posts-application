@@ -18,12 +18,18 @@
     </div>
     <footer class="card-footer">
       <a href="#" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item is-danger">Delete</a>
+      <a
+        href="/"
+        @click="deletePost(post.id)"
+        class="card-footer-item is-danger"
+        >Delete</a
+      >
     </footer>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   props: ['isPrimary', 'post', 'authors'],
   data() {
@@ -31,7 +37,9 @@ export default {
       isEddited: false
     };
   },
-  methods: {},
+  methods: {
+    ...mapActions(['deletePost'])
+  },
   computed: {
     findAuthor() {
       let author = this.authors.filter(
