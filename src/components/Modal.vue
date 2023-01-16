@@ -2,9 +2,17 @@
   <div class="modal is-active">
     <div class="modal-background" @click="closeModal"></div>
     <div class="modal-content">
-      <slot></slot>
       <div class="box">
-        <h3 class="title is-3 has-text-centered"><slot></slot></h3>
+        <h3 class="title is-3 has-text-centered">
+          <!-- Title slot -->
+          <slot name="title"></slot>
+        </h3>
+        <div class="modal-card-body">
+          <!-- Form slot -->
+          <slot name="form"></slot>
+          <!-- Message slot -->
+          <slot name="message"></slot>
+        </div>
       </div>
     </div>
     <button
@@ -17,9 +25,13 @@
 
 <script>
 import { mapActions } from 'vuex';
+import Message from '../components/Message.vue';
 export default {
   name: 'modal',
-  methods: mapActions(['closeModal'])
+  methods: mapActions(['closeModal']),
+  components: {
+    Message
+  }
 };
 </script>
 
