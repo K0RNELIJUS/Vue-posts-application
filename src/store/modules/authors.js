@@ -11,12 +11,12 @@ const getters = {
 const actions = {
   async fetchAuthors({ commit }) {
     const { data } = await axios.get('http://localhost:3000/authors');
-    commit('setAuthors', data);
+    commit('SET_AUTHORS', data);
   }
 };
 
 const mutations = {
-  setAuthors: (state, authors) => (state.authors = authors)
+  SET_AUTHORS: (state, authors) => (state.authors = authors)
 };
 
 export default {

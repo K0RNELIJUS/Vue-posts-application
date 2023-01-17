@@ -8,16 +8,16 @@ const getters = {
 
 const actions = {
   openModal({ commit }) {
-    commit('openModal');
+    commit('OPEN_MODAL');
   },
   closeModal({ commit }) {
-    commit('closeModal');
+    commit('CLOSE_MODAL');
   }
 };
 
 const mutations = {
-  openModal: state => (state.isOpen = true),
-  closeModal: state => (state.isOpen = false)
+  OPEN_MODAL: state => (state.isOpen = true),
+  CLOSE_MODAL: state => (state.isOpen = false)
 };
 
 export default {
