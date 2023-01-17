@@ -58,7 +58,8 @@ export default {
       'closeMessage',
       'messageContent',
       'closeModal',
-      'deletePost'
+      'deletePost',
+      'clearMessage'
     ]),
     // -- Clear and close message
     clearCloseMessage() {
@@ -81,7 +82,7 @@ export default {
       this.deletePost(this.currentActivePostId);
 
       this.messageContent({
-        title: 'Deleted!',
+        title: 'Success',
         body: 'Your post has been deleted.',
         isDelete: false,
         isSuccess: true,
@@ -94,6 +95,9 @@ export default {
 
   computed: {
     ...mapGetters(['messageState', 'currentActivePostId'])
+  },
+  unmounted() {
+    this.clearMessage();
   }
 };
 </script>
