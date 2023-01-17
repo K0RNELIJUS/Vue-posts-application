@@ -1,10 +1,12 @@
 <template>
   <div class="card">
-    <header class="card-header has-background-light">
-      <p class="card-header-title">
-        {{ post.title }}
-      </p>
-    </header>
+    <router-link :to="`/article/${post.id}`">
+      <header class="card-header has-background-light">
+        <p class="card-header-title">
+          {{ post.title }}
+        </p>
+      </header>
+    </router-link>
     <div class="card-content">
       <div class="media">
         <div class="media-content">
@@ -16,11 +18,12 @@
         <div class="content">{{ post.body }}</div>
       </slot>
     </div>
+
     <footer class="card-footer">
-      <a href="#" class="card-footer-item">Edit</a>
+      <a href="#" @click.prevent="editPost" class="card-footer-item">Edit</a>
       <a
-        href="/"
-        @click="deletePost(post.id)"
+        href="#"
+        @click.prevent="deletePostSetMsg"
         class="card-footer-item is-danger"
         >Delete</a
       >
@@ -29,18 +32,48 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   props: ['isPrimary', 'post', 'authors'],
-  data() {
-    return {
-      isEddited: false
-    };
-  },
   methods: {
-    ...mapActions(['deletePost'])
+    ...mapActions([
+      'openModal',
+      'deletePost',
+      'messageContent',
+      'openMessage',
+      'clearMessage',
+      'setCurrentActivePostId',
+      'editMode',
+      'fetchPost'
+    ]),
+
+    // -- Delete post
+    deletePostSetMsg() {
+      this.setCurrentActivePostId(this.post.id);
+
+      this.clearMessage();
+      this.messageContent({
+        title: 'Are you sure?',
+        body: 'You will not be able to recover this post!',
+        isDelete: true,
+        isSuccess: false,
+        isError: true
+      });
+      this.openModal();
+      this.openMessage();
+    },
+
+    // -- Edit post
+    editPost() {
+      this.openModal();
+      this.editMode();
+      this.setCurrentActivePostId(this.post.id);
+      this.fetchPost(this.currentActivePostId);
+    }
   },
+
   computed: {
+    ...mapGetters(['currentActivePostId']),
     findAuthor() {
       let author = this.authors.filter(
         author => author.id === this.post.author
