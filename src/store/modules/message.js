@@ -1,7 +1,10 @@
 const state = {
   isOpen: false,
   title: '',
-  body: ''
+  body: '',
+  isDelete: false,
+  isSuccess: false,
+  isError: false
 };
 
 const getters = {
@@ -9,33 +12,45 @@ const getters = {
     return {
       isOpen: state.isOpen,
       title: state.title,
-      body: state.body
+      body: state.body,
+      isDelete: state.isDelete,
+      isSuccess: state.isSuccess,
+      isError: state.isError
     };
   }
 };
 
 const actions = {
   openMessage({ commit }) {
-    commit('openMessage');
+    commit('OPEN_MESSAGE');
   },
   closeMessage({ commit }) {
-    commit('closeMessage');
+    commit('CLOSE_MESSAGE');
   },
   messageContent({ commit }, payload) {
-    commit('setMessage', payload);
+    commit('SET_MESSAGE', payload);
   },
   clearMessage({ commit }) {
-    commit('closeMessage');
-    commit('setMessage', { title: '', body: '' });
+    commit('CLOSE_MESSAGE');
+    commit('SET_MESSAGE', {
+      title: '',
+      body: '',
+      isDelete: false,
+      isSuccess: false,
+      isError: false
+    });
   }
 };
 
 const mutations = {
-  openMessage: state => (state.isOpen = true),
-  closeMessage: state => (state.isOpen = false),
-  setMessage: (state, payload) => {
+  OPEN_MESSAGE: state => (state.isOpen = true),
+  CLOSE_MESSAGE: state => (state.isOpen = false),
+  SET_MESSAGE: (state, payload) => {
     state.title = payload.title;
     state.body = payload.body;
+    state.isDelete = payload.isDelete;
+    state.isSuccess = payload.isSuccess;
+    state.isError = payload.isError;
   }
 };
 
