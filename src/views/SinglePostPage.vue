@@ -1,6 +1,13 @@
 <template>
   <main>
     <section class="section fullheight">
+      <router-link to="/">
+        <button class="button is-primary mb-5">
+          <span class="icon is-small"> <i class="fas fa-arrow-left"></i> </span
+          ><span>Back</span>
+        </button>
+      </router-link>
+
       <div class="columns">
         <div class="column">
           <Card :isPrimary="true" :authors="allAuthors" :post="singlePost" />
