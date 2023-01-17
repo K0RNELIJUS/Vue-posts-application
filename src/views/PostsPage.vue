@@ -38,10 +38,12 @@ export default {
   components: { Card, Pagination },
 
   methods: {
-    ...mapActions(['fetchPosts', 'fetchAuthors', 'openModal', 'createMode']),
+    ...mapActions(['fetchPosts', 'fetchAuthors', 'openModal', 'createMode','closeMessage']),
+    // Open modal and set mode to create
     openModalSetMode() {
       this.openModal();
       this.createMode();
+      this.closeMessage();
     }
   },
 
@@ -56,6 +58,6 @@ export default {
 
 <style>
 .full-height {
-  height: calc(100vh);
+  height: 100vh;
 }
 </style>
