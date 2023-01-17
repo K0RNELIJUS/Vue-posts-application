@@ -1,6 +1,6 @@
 <template>
   <div class="modal is-active">
-    <div class="modal-background" @click="closeModal"></div>
+    <div class="modal-background" @click="closeModalClearMsg"></div>
     <div class="modal-content">
       <div class="box">
         <h3 class="title is-3 has-text-centered">
@@ -18,7 +18,7 @@
     <button
       class="modal-close is-large"
       aria-label="close"
-      @click="closeModal"
+      @click="closeModalClearMsg"
     ></button>
   </div>
 </template>
@@ -28,7 +28,13 @@ import { mapActions } from 'vuex';
 import Message from '../components/Message.vue';
 export default {
   name: 'modal',
-  methods: mapActions(['closeModal']),
+  methods: {
+    ...mapActions(['closeModal', 'clearMessage']),
+    closeModalClearMsg() {
+      this.closeModal();
+      this.clearMessage();
+    }
+  },
   components: {
     Message
   }
