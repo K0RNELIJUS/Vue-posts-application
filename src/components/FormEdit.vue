@@ -1,21 +1,5 @@
 <template>
   <form class="form" @submit="onSubmit">
-    <div v-if="!isEditMode" class="field">
-      <label class="label">Author</label>
-      <div class="control">
-        <div class="select">
-          <select v-model="authorName" required>
-            <option
-              v-for="author in allAuthors"
-              :key="author.id"
-              :value="author.id"
-              >{{ author.name }}</option
-            >
-          </select>
-        </div>
-      </div>
-    </div>
-
     <div class="field">
       <label class="label">Title</label>
       <div class="control">
@@ -43,7 +27,7 @@
 
     <div class="control">
       <button class="button is-primary" type="submit">
-        {{ isEditMode ? 'Save' : 'Submit' }}
+        Save
       </button>
     </div>
   </form>
@@ -53,21 +37,28 @@
 import currentDateTime from '../services/currenDateTime';
 import { mapGetters, mapActions } from 'vuex';
 export default {
+  data() {
+    return {
+      title: '',
+      body: ''
+    };
+  },
   methods: {
-    ...mapActions(['addPost', 'openMessage', 'messageContent']),
+    ...mapActions(['openMessage', 'messageContent', 'fetchPost', 'updatePost']),
 
     onSubmit(e) {
       e.preventDefault();
-      const newArticle = {
+
+      const updatedArticle = {
         title: this.title,
         body: this.body,
-        author: this.authorName,
-        created_at: currentDateTime,
-        updated_at: ''
+        author: this.singlePost.author,
+        created_at: this.singlePost.created_at,
+        updated_at: currentDateTime
       };
 
-      //  Post
-      this.addPost(newArticle);
+      //  Update post
+      this.updatePost(this.currentActivePostId, updatedArticle);
 
       //  Reset form
       this.authorName = '';
@@ -77,7 +68,7 @@ export default {
       //  Open message
       this.messageContent({
         title: 'Success',
-        body: 'Article created successfully',
+        body: 'Article updated successfully',
         isSuccess: true
       });
 
@@ -85,7 +76,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['allAuthors', 'isEditMode'])
+    ...mapGetters(['allAuthors', 'currentActivePostId', 'singlePost'])
+  },
+  created() {
+    this.title = this.singlePost.title;
+    this.body = this.singlePost.body;
+    console.log(this.singlePost);
   }
 };
 </script>
