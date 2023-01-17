@@ -66,15 +66,10 @@ export default {
         updated_at: ''
       };
 
-      //  Post
+      //  Add new post
       this.addPost(newArticle);
 
-      //  Reset form
-      this.authorName = '';
-      this.title = '';
-      this.body = '';
-
-      //  Open message
+      // Set message
       this.messageContent({
         title: 'Success',
         body: 'Article created successfully',

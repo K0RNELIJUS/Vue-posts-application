@@ -60,11 +60,6 @@ export default {
       //  Update post
       this.updatePost(this.currentActivePostId, updatedArticle);
 
-      //  Reset form
-      this.authorName = '';
-      this.title = '';
-      this.body = '';
-
       //  Open message
       this.messageContent({
         title: 'Success',
