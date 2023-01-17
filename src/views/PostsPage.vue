@@ -2,7 +2,7 @@
   <main>
     <section class="section ">
       <div class="is-flex ">
-        <button class="button is-primary mb-5" @click="openModal">
+        <button class="button is-primary mb-5" @click="openModalSetMode">
           Create new article
         </button>
       </div>
@@ -18,9 +18,7 @@
           :key="post.id"
           class="column is-6-tablet is-4-desktop"
         >
-          <router-link :to="`/article/${post.id}`">
-            <Card :authors="allAuthors" :post="post"></Card>
-          </router-link>
+          <Card :authors="allAuthors" :post="post" :id="post.id"></Card>
         </div>
       </div>
       <Pagination />
@@ -39,7 +37,13 @@ export default {
   name: 'posts-page',
   components: { Card, Pagination },
 
-  methods: { ...mapActions(['fetchPosts', 'fetchAuthors', 'openModal']) },
+  methods: {
+    ...mapActions(['fetchPosts', 'fetchAuthors', 'openModal', 'createMode']),
+    openModalSetMode() {
+      this.openModal();
+      this.createMode();
+    }
+  },
 
   computed: { ...mapGetters(['allPosts', 'allAuthors']) },
 
