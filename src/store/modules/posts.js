@@ -69,11 +69,11 @@ const actions = {
 
   async updatePost({ commit }, id, updatedPost) {
     try {
-      const { data } = await axios.put(
-        `http://localhost:3000/articles/${id}`,
+      const { data } = await axios.put(`http://localhost:3000/articles/${id}`, {
         updatedPost
-      );
+      });
       commit('UPDATE_POST', data);
+      console.log('form Action', data);
     } catch (error) {
       commit('SET_ERROR', error.message);
     }
@@ -98,6 +98,7 @@ const mutations = {
     const index = state.posts.findIndex(post => post.id === updatedPost.id);
     if (index !== -1) {
       state.posts.splice(index, 1, updatedPost);
+      console.log('from mutation', updatedPost);
     }
   },
   // Single post
