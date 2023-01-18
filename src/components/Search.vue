@@ -1,18 +1,17 @@
 <template>
   <div class="field has-addons mb-5">
-    <p class="control">
+    <div class="control has-icons-left">
       <input
         v-model="searchTerm"
         class="input"
         type="text"
         placeholder="Find an article"
+        @keyup="search"
       />
-    </p>
-    <p class="control">
-      <button @click="search" class="button is-primary">
-        Search
-      </button>
-    </p>
+      <span class="icon is-left"
+        ><i class="fas fa-lg fa-search is-left"></i
+      ></span>
+    </div>
   </div>
 </template>
 
