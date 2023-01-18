@@ -1,43 +1,49 @@
 <template>
   <nav class="pagination is-info" role="navigation" aria-label="pagination">
-    <a class="pagination-previous">Previous</a>
-    <a class="pagination-next">Next page</a>
+    <a
+      class="pagination-previous"
+      @click="prevPage"
+      :disabled="currentPage === 1"
+      >Previous</a
+    >
+    <a
+      class="pagination-next"
+      @click="nextPage"
+      :disabled="currentPage === totalPages"
+      >Next page</a
+    >
     <ul class="pagination-list">
-      <li>
-        <a class="pagination-link" aria-label="Goto page 1">1</a>
-      </li>
-      <li>
-        <span class="pagination-ellipsis">&hellip;</span>
-      </li>
-      <li>
-        <a class="pagination-link" aria-label="Goto page 45">45</a>
-      </li>
-      <li>
+      <li v-for="i in totalPages" :key="i">
         <a
+          v-if="i === currentPage"
           class="pagination-link is-current"
-          aria-label="Page 46"
           aria-current="page"
-          >46</a
+          @click="changePage(i)"
+          >{{ i }}</a
         >
-      </li>
-      <li>
-        <a class="pagination-link" aria-label="Goto page 47">47</a>
-      </li>
-      <li>
-        <span class="pagination-ellipsis">&hellip;</span>
-      </li>
-      <li>
-        <a class="pagination-link" aria-label="Goto page 86">86</a>
+        <a v-else class="pagination-link" @click="changePage(i)">{{ i }}</a>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 export default {
+  props: ['currentPage', 'totalPages'],
   methods: {
-    ...mapGetters(['allPosts'])
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.$emit('pageChanged', this.currentPage - 1);
+      }
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.$emit('pageChanged', this.currentPage + 1);
+      }
+    },
+    changePage(page) {
+      this.$emit('pageChanged', page);
+    }
   }
 };
 </script>
