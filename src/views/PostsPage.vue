@@ -1,11 +1,16 @@
 <template>
   <main>
-    <section class="section ">
-      <div class="is-flex ">
+    <section class="section full-height ">
+      <div
+        class="is-flex is-justify-content-space-between is-flex-wrap-wrap-reverse"
+      >
         <button class="button is-primary mb-5" @click="openModalSetMode">
           Create new article
         </button>
+        <!-- Search -->
+        <Search @search="handleSearch" />
       </div>
+      <!-- Posts -->
       <div class="columns is-flex-wrap-wrap">
         <div
           class="column is-flex is-justify-content-center"
@@ -34,16 +39,19 @@
 // Vuex
 import { mapGetters, mapActions } from 'vuex';
 // Components
+import Search from '../components/Search.vue';
 import Card from '../components/Card.vue';
 import Pagination from '../components/Pagination.vue';
 
 export default {
   name: 'posts-page',
-  components: { Card, Pagination },
+  components: { Search, Card, Pagination },
   data() {
     return {
+      // Pagination
       currentPage: 1,
-      postsPerPage: 6
+      postsPerPage: 6,
+      searchTerm: ''
     };
   },
 
@@ -61,20 +69,47 @@ export default {
       this.createMode();
       this.closeMessage();
     },
+    // Pagination
     changePage(newPage) {
       this.currentPage = newPage;
+    },
+    // Search
+    handleSearch(searchTerm) {
+      this.searchTerm = searchTerm;
+      this.currentPage = 1;
     }
   },
 
   computed: {
     ...mapGetters(['allPosts', 'allAuthors']),
+    // Pagination and Search
     totalPages() {
-      return Math.ceil(this.allPosts.length / this.postsPerPage);
+      if (this.searchTerm === '') {
+        return Math.ceil(this.allPosts.length / this.postsPerPage);
+      } else {
+        let filteredPosts = this.allPosts.filter(
+          post =>
+            post.title.includes(this.searchTerm) ||
+            post.body.includes(this.searchTerm)
+        );
+        return Math.ceil(filteredPosts.length / this.postsPerPage);
+      }
     },
     filteredPosts() {
-      const start = (this.currentPage - 1) * this.postsPerPage;
-      const end = start + this.postsPerPage;
-      return this.allPosts.slice(start, end);
+      if (this.searchTerm === '') {
+        const start = (this.currentPage - 1) * this.postsPerPage;
+        const end = start + this.postsPerPage;
+        return this.allPosts.slice(start, end);
+      } else {
+        let filteredPosts = this.allPosts.filter(
+          post =>
+            post.title.includes(this.searchTerm) ||
+            post.body.includes(this.searchTerm)
+        );
+        const start = (this.currentPage - 1) * this.postsPerPage;
+        const end = start + this.postsPerPage;
+        return filteredPosts.slice(start, end);
+      }
     }
   },
 
@@ -86,7 +121,7 @@ export default {
 </script>
 
 <style>
-.full-height {
-  height: 100vh;
-}
+/* .full-height {
+  height: calc(100vh);
+} */
 </style>
