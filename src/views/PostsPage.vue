@@ -69,14 +69,19 @@ export default {
       this.createMode();
       this.closeMessage();
     },
-    // Pagination
-    changePage(newPage) {
-      this.currentPage = newPage;
+    // Get author name
+    getAuthorName(authorId) {
+      const author = this.allAuthors.find(author => author.id === authorId);
+      return author ? author.name.toLowerCase() : '';
     },
     // Search
     handleSearch(searchTerm) {
-      this.searchTerm = searchTerm;
+      this.searchTerm = searchTerm.toString().toLowerCase();
       this.currentPage = 1;
+    },
+    // Pagination
+    changePage(newPage) {
+      this.currentPage = newPage;
     }
   },
 
@@ -89,27 +94,27 @@ export default {
       } else {
         let filteredPosts = this.allPosts.filter(
           post =>
-            post.title.includes(this.searchTerm) ||
-            post.body.includes(this.searchTerm)
+            post.title.toLowerCase().includes(this.searchTerm) ||
+            post.body.toLowerCase().includes(this.searchTerm)
         );
         return Math.ceil(filteredPosts.length / this.postsPerPage);
       }
     },
     filteredPosts() {
-      if (this.searchTerm === '') {
-        const start = (this.currentPage - 1) * this.postsPerPage;
-        const end = start + this.postsPerPage;
-        return this.allPosts.slice(start, end);
-      } else {
-        let filteredPosts = this.allPosts.filter(
+      let filteredPosts = this.allPosts;
+      if (this.searchTerm) {
+        filteredPosts = filteredPosts.filter(
           post =>
-            post.title.includes(this.searchTerm) ||
-            post.body.includes(this.searchTerm)
+            post.title.toLowerCase().includes(this.searchTerm) ||
+            post.body.toLowerCase().includes(this.searchTerm) ||
+            post.created_at.includes(this.searchTerm) ||
+            post.updated_at.includes(this.searchTerm) ||
+            this.getAuthorName(post.author).includes(this.searchTerm)
         );
-        const start = (this.currentPage - 1) * this.postsPerPage;
-        const end = start + this.postsPerPage;
-        return filteredPosts.slice(start, end);
       }
+      const start = (this.currentPage - 1) * this.postsPerPage;
+      const end = start + this.postsPerPage;
+      return filteredPosts.slice(start, end);
     }
   },
 
