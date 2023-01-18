@@ -4,43 +4,63 @@ import axios from 'axios';
 const state = {
   posts: [],
   singlePost: {},
-  currentActivePostId: ''
+  currentActivePostId: '',
+  error: ''
 };
 
 // --- Getters
 const getters = {
   allPosts: state => state.posts,
   singlePost: state => state.singlePost,
-  currentActivePostId: state => state.currentActivePostId
+  currentActivePostId: state => state.currentActivePostId,
+  postsError: state => state.error
 };
 
 //  --- Actions
 const actions = {
   async fetchPosts({ commit }) {
-    const { data } = await axios.get('http://localhost:3000/articles');
-    commit('SET_POSTS', data);
+    try {
+      const { data } = await axios.get('http://localhost:3000/articles');
+      commit('SET_POSTS', data);
+    } catch (error) {
+      commit('SET_ERROR', error.message);
+    }
   },
 
   // - Posts
   // Create new post
   async addPost({ commit }, newPost) {
-    const { data } = await axios.post(
-      'http://localhost:3000/articles',
-      newPost
-    );
-    commit('ADD_NEW_POST', data);
+    try {
+      const { data } = await axios.post(
+        'http://localhost:3000/articles',
+        newPost
+      );
+      commit('ADD_NEW_POST', data);
+    } catch (error) {
+      commit('SET_ERROR', error.message);
+    }
   },
 
   // Delete post
   async deletePost({ commit }, id) {
-    await axios.delete(`http://localhost:3000/articles/${id}`);
-    commit('REMOVE_POST', id);
+    try {
+      await axios.delete(`http://localhost:3000/articles/${id}`);
+      commit('REMOVE_POST', id);
+    } catch (error) {
+      commit('SET_ERROR', error.message);
+    }
   },
 
   //  - Single post
+
   async fetchPost({ commit }, id) {
-    const { data } = await axios.get(`http://localhost:3000/articles/${id}`);
-    commit('SET_SINGLE_POST', data);
+    try {
+      const { data } = await axios.get(`http://localhost:3000/articles/${id}`);
+      commit('SET_SINGLE_POST', data);
+    } catch (error) {
+      console.log('state error', error.message);
+      commit('SET_ERROR', error.message);
+    }
   },
 
   resetSinglePost({ commit }) {
@@ -48,11 +68,15 @@ const actions = {
   },
 
   async updatePost({ commit }, id, updatedPost) {
-    const { data } = await axios.put(
-      `http://localhost:3000/articles/${id}`,
-      updatedPost
-    );
-    commit('UPDATE_POST', data);
+    try {
+      const { data } = await axios.put(
+        `http://localhost:3000/articles/${id}`,
+        updatedPost
+      );
+      commit('UPDATE_POST', data);
+    } catch (error) {
+      commit('SET_ERROR', error.message);
+    }
   },
   // Set current active post id
   setCurrentActivePostId({ commit }, id) {
@@ -76,11 +100,13 @@ const mutations = {
       state.posts.splice(index, 1, updatedPost);
     }
   },
-  //   Single post
+  // Single post
   SET_SINGLE_POST: (state, post) => (state.singlePost = post),
   RESET_SINGLE_POST: state => (state.singlePost = {}),
   // Set current active post id
-  SET_CURRENT_ACTIVE_POST_ID: (state, id) => (state.currentActivePostId = id)
+  SET_CURRENT_ACTIVE_POST_ID: (state, id) => (state.currentActivePostId = id),
+  // Error
+  SET_ERROR: (state, error) => (state.error = error)
 };
 
 export default {
