@@ -54,12 +54,13 @@ export default {
         body: this.body,
         author: this.singlePost.author,
         created_at: this.singlePost.created_at,
-        updated_at: currentDateTime
+        updated_at: currentDateTime,
+        id: this.singlePost.id
       };
 
       //  Update post
       this.updatePost(this.currentActivePostId, updatedArticle);
-
+      console.log('fromForm', updatedArticle);
       //  Open message
       this.messageContent({
         title: 'Success',
@@ -76,7 +77,7 @@ export default {
   created() {
     this.title = this.singlePost.title;
     this.body = this.singlePost.body;
-    console.log(this.singlePost);
+    console.log('from FormEdit created', this.singlePost.id);
   }
 };
 </script>
