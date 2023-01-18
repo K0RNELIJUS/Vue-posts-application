@@ -20,13 +20,8 @@
     </div>
 
     <footer class="card-footer">
-      <a href="#" @click.prevent="editPost" class="card-footer-item">Edit</a>
-      <a
-        href="#"
-        @click.prevent="deletePostSetMsg"
-        class="card-footer-item is-danger"
-        >Delete</a
-      >
+      <a @click="editPost" class="card-footer-item">Edit</a>
+      <a @click="deletePostSetMsg" class="card-footer-item is-danger">Delete</a>
     </footer>
   </div>
 </template>
@@ -46,7 +41,6 @@ export default {
       'editMode',
       'fetchPost'
     ]),
-
     // -- Delete post
     deletePostSetMsg() {
       this.setCurrentActivePostId(this.post.id);
