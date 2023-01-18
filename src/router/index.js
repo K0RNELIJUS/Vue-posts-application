@@ -12,18 +12,24 @@ const routes = [
     name: 'single-post-page',
     path: '/article/:id',
     component: SinglePostPage
-    // beforeEnter(to) {
-    //   const id = parseInt(to.params.id);
-    //   const articles = allPosts.articles;
-
-    //   const exists = articles.some(article => article.id === id);
-
-    //   if (!exists) return { name: 'not-found' };
-    // }
+    // beforeRouerEnter(to, from, next) {
+    //   const postExists = this.allPosts.some(post => post.id === this.id);
+    //   if (!postExists) {
+    //     next({ name: 'not-found' });
+    //   } else {
+    //     next();
+    //   }
+    // },
   },
 
   {
+    name: 'not-found',
     path: '/:pathMatch(.*)*',
+    component: NotFound
+  },
+  {
+    name: '404',
+    path: '/404',
     component: NotFound
   }
 ];

@@ -32,11 +32,14 @@ export default {
   },
   methods: { ...mapActions(['fetchPost', 'fetchAuthors']) },
 
-  computed: { ...mapGetters(['singlePost', 'allAuthors']) },
+  computed: { ...mapGetters(['singlePost', 'allAuthors', 'postsError']) },
 
-  async created() {
+  created() {
     this.fetchAuthors();
     this.fetchPost(this.id);
+    if (this.postsError) {
+      this.$router.push('/404');
+    }
   }
 };
 </script>
