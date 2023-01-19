@@ -32,13 +32,7 @@ const actions = {
   },
   clearMessage({ commit }) {
     commit('CLOSE_MESSAGE');
-    commit('SET_MESSAGE', {
-      title: '',
-      body: '',
-      isDelete: false,
-      isSuccess: false,
-      isError: false
-    });
+    commit('RESET_MESSAGE');
   }
 };
 
@@ -51,6 +45,13 @@ const mutations = {
     state.isDelete = payload.isDelete;
     state.isSuccess = payload.isSuccess;
     state.isError = payload.isError;
+  },
+  RESET_MESSAGE: state => {
+    state.title = '';
+    state.body = '';
+    state.isDelete = false;
+    state.isSuccess = false;
+    state.isError = false;
   }
 };
 
