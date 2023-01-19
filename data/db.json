@@ -29,28 +29,12 @@
       "updated_at": "2022-11-23 09:20:04"
     },
     {
-      "id": 2,
-      "title": "The Role of IoT in the Future of Agriculture",
-      "body": "The Internet of Things (IoT) has the potential to revolutionize the way we approach agriculture. By connecting devices and sensors to the internet, farmers can now monitor and control their operations with greater precision and efficiency. From monitoring soil moisture levels to controlling irrigation systems, IoT technology is improving crop yields and reducing water consumption. This article will explore the ways in which IoT is being used in agriculture, and the benefits it offers to farmers and the environment.",
-      "author": 1,
-      "created_at": "2022-05-10 18:10:03",
-      "updated_at": "2022-12-23 09:20:04"
-    },
-    {
       "id": 3,
       "title": "IoT and the Smart Home: Making Life Easier",
       "body": "The smart home is one of the most exciting applications of the Internet of Things (IoT). With the ability to connect devices and appliances to the internet, we can now control our homes from anywhere, at any time. From turning off lights to adjusting the thermostat, the smart home is making life easier for homeowners. In this article, we will explore the ways in which IoT is being used in the smart home, and the benefits it offers to homeowners.",
       "author": 2,
       "created_at": "2022-01-10 18:10:03",
       "updated_at": ""
-    },
-    {
-      "id": 4,
-      "title": "IoT in the Supply Chain: Improving Traceability",
-      "body": "The Internet of Things (IoT) is transforming the way we manage supply chains. By connecting devices and sensors to the internet, companies can now track and monitor their products in real-time. From tracking inventory levels to monitoring the location of cargo, IoT technology is improving traceability and transparency in the supply chain. This article will explore the ways in which IoT is being used in the supply chain, and the benefits it offers to businesses and consumers.",
-      "author": 3,
-      "created_at": "2022-06-10 18:10:03",
-      "updated_at": "2022-11-23 09:20:04"
     },
     {
       "id": 5,
@@ -61,14 +45,6 @@
       "updated_at": "2022-12-23 09:20:04"
     },
     {
-      "id": 6,
-      "title": "IoT and the Smart Home: Making Life Easier",
-      "body": "The smart home is one of the most exciting applications of the Internet of Things (IoT). With the ability to connect devices and appliances to the internet, we can now control our homes from anywhere, at any time. From turning off lights to adjusting the thermostat, the smart home is making life easier for homeowners. In this article, we will explore the ways in which IoT is being used in the smart home, and the benefits it offers to homeowners.",
-      "author": 2,
-      "created_at": "2022-01-10 18:10:03",
-      "updated_at": ""
-    },
-    {
       "id": 7,
       "title": "IoT in the Supply Chain: Improving Traceability",
       "body": "The Internet of Things (IoT) is transforming the way we manage supply chains. By connecting devices and sensors to the internet, companies can now track and monitor their products in real-time. From tracking inventory levels to monitoring the location of cargo, IoT technology is improving traceability and transparency in the supply chain. This article will explore the ways in which IoT is being used in the supply chain, and the benefits it offers to businesses and consumers.",
@@ -77,20 +53,76 @@
       "updated_at": "2022-11-23 09:20:04"
     },
     {
-      "id": 8,
-      "title": "The Role of IoT in the Future of Agriculture",
-      "body": "The Internet of Things (IoT) has the potential to revolutionize the way we approach agriculture. By connecting devices and sensors to the internet, farmers can now monitor and control their operations with greater precision and efficiency. From monitoring soil moisture levels to controlling irrigation systems, IoT technology is improving crop yields and reducing water consumption. This article will explore the ways in which IoT is being used in agriculture, and the benefits it offers to farmers and the environment.",
-      "author": 1,
-      "created_at": "2022-05-10 18:10:03",
-      "updated_at": "2022-12-23 09:20:04"
-    },
-    {
       "id": 9,
       "title": "IoT and the Smart Home: Making Life Easier",
       "body": "The smart home is one of the most exciting applications of the Internet of Things (IoT). With the ability to connect devices and appliances to the internet, we can now control our homes from anywhere, at any time. From turning off lights to adjusting the thermostat, the smart home is making life easier for homeowners. In this article, we will explore the ways in which IoT is being used in the smart home, and the benefits it offers to homeowners.",
       "author": 2,
       "created_at": "2022-01-10 18:10:03",
       "updated_at": ""
+    },
+    {
+      "title": "The Impact of IoT on Smart Homes",
+      "body": "In recent years, the Internet of Things (IoT) has become increasingly prevalent in our daily lives. One of the most notable areas of growth has been in the realm of smart homes, where IoT devices and systems are being used to automate and control various aspects of the home, such as lighting, temperature, security, and more.",
+      "author": 1,
+      "created_at": "2023-01-19 13:53:27",
+      "updated_at": "",
+      "id": 10
+    },
+    {
+      "title": "IoT and Industry 4.0: Revolutionizing the Factory Floor",
+      "body": "The fourth industrial revolution, also known as Industry 4.0, is rapidly changing the way that factories operate. One of the key drivers of this change is the Internet of Things (IoT), which is being used to connect machines, devices, and systems in new ways, resulting in increased efficiency, productivity, and flexibility.",
+      "author": 2,
+      "created_at": "2023-01-19 14:02:41",
+      "updated_at": "",
+      "id": 11
+    },
+    {
+      "title": "IoT in Retail: Enhancing the Customer Experience",
+      "body": "IoT is being used in the retail industry to enhance the customer experience. IoT-enabled devices such as beacons, smart shelves, and inventory management systems can provide real-time data on customer behavior, inventory levels, and store operations, allowing retailers to improve their operations and provide a more personalized shopping experience.",
+      "author": 3,
+      "created_at": "2023-01-19 14:03:15",
+      "updated_at": "",
+      "id": 12
+    },
+    {
+      "title": "IoT in Transportation: Improving Safety and Efficiency",
+      "body": "The Internet of Things (IoT) is changing the transportation industry by connecting vehicles, traffic systems, and infrastructure. IoT-enabled devices such as GPS, cameras, and sensors can provide real-time data on traffic conditions, vehicle performance, and driver behavior, allowing for improved safety and efficiency on the roads.",
+      "author": 1,
+      "created_at": "2023-01-19 14:03:15",
+      "updated_at": "",
+      "id": 13
+    },
+    {
+      "title": "IoT in Energy: Optimizing Resource Management",
+      "body": "IoT is being used in the energy industry to optimize resource management. IoT-enabled devices such as smart meters, sensors, and control systems can provide real-time data on energy consumption and production, allowing for more efficient use of resources and cost savings for consumers.",
+      "author": 2,
+      "created_at": "2023-01-19 14:04:41",
+      "updated_at": "",
+      "id": 14
+    },
+    {
+      "title": "IoT in Construction: Improving Safety and Efficiency",
+      "body": "The Internet of Things (IoT) is transforming the construction industry by connecting equipment, tools, and workers. IoT-enabled devices such as sensors, cameras, and wearables can provide real-time data on site conditions, worker safety, and equipment performance, allowing for improved safety and efficiency on the job site.",
+      "author": 1,
+      "created_at": "2023-01-19 14:05:00",
+      "updated_at": "",
+      "id": 15
+    },
+    {
+      "title": "IoT in Environmental Monitoring: Protecting the Planet",
+      "body": "IoT is being used in environmental monitoring to protect the planet. IoT-enabled devices such as sensors, cameras, and drones can provide real-time data on air and water quality, weather conditions, and wildlife behavior, allowing for early detection of potential hazards and more effective conservation efforts.",
+      "author": 2,
+      "created_at": "2023-01-19 14:06:28",
+      "updated_at": "",
+      "id": 16
+    },
+    {
+      "title": "IoT in Education: Enhancing the Learning Experience",
+      "body": "The Internet of Things (IoT) is changing the way we learn by connecting devices and systems in the classroom. IoT-enabled devices such as interactive whiteboards, tablets, and virtual reality systems can provide real-time data on student engagement and performance, allowing teachers to tailor their instruction and improve student outcomes.",
+      "author": 3,
+      "created_at": "2023-01-19 14:06:28",
+      "updated_at": "",
+      "id": 17
     }
   ]
 }
