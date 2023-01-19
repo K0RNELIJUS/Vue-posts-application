@@ -9,7 +9,7 @@
     <a
       class="pagination-next"
       @click="nextPage"
-      :disabled="currentPage === totalPages"
+      :disabled="currentPage === totalPages || totalPages === 0"
       >Next page</a
     >
     <ul class="pagination-list">
