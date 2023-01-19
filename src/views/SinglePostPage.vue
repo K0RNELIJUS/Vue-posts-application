@@ -30,16 +30,28 @@ export default {
       id: this.$route.params.id
     };
   },
-  methods: { ...mapActions(['fetchPost', 'fetchAuthors']) },
+  beforeRouteEnter(to, from, next) {
+    const postId = to.params.id;
+    // Check if the post id exists in the data store
+    const callback = function(vm) {
+      if (!vm.allPosts.find(post => post.id == postId)) {
+        // If the post id does not exist, navigate to the error page
+        next({ name: 'error' });
+      } else {
+        next();
+      }
+    };
+    next(callback);
+  },
+  methods: { ...mapActions(['fetchPost', 'fetchAuthors', 'openModal']) },
 
-  computed: { ...mapGetters(['singlePost', 'allAuthors', 'postsError']) },
+  computed: {
+    ...mapGetters(['singlePost', 'allAuthors', 'postsError', 'allPosts'])
+  },
 
   created() {
     this.fetchAuthors();
     this.fetchPost(this.id);
-    if (this.postsError) {
-      this.$router.push('/404');
-    }
   }
 };
 </script>
