@@ -9,7 +9,7 @@
       </router-link>
 
       <div class="columns">
-        <div class="column">
+        <div class="column is-half is-offset-one-quarter">
           <Card :isPrimary="true" :authors="allAuthors" :post="singlePost" />
         </div>
       </div>
