@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section fullheight">
     <div class="columns is-centered">
       <div class="column is-half is-two-fifths-desktop">
         <div class="notification is-danger is-light ">
@@ -19,4 +19,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.fullheight {
+  height: calc(100vh - 380px);
+}
+</style>
