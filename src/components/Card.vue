@@ -39,7 +39,8 @@ export default {
       'clearMessage',
       'setCurrentActivePostId',
       'editMode',
-      'fetchPost'
+      'fetchPost',
+      'clearError'
     ]),
     // -- Delete post
     deletePostSetMsg() {
@@ -59,10 +60,11 @@ export default {
 
     // -- Edit post
     editPost() {
-      this.openModal();
-      this.editMode();
       this.setCurrentActivePostId(this.post.id);
       this.fetchPost(this.currentActivePostId);
+      this.clearError();
+      this.openModal();
+      this.editMode();
     }
   },
 
