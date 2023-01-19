@@ -37,19 +37,13 @@
 import currentDateTime from '../services/currenDateTime';
 import { mapGetters, mapActions } from 'vuex';
 export default {
-  data() {
-    return {
-      title: '',
-      body: ''
-    };
-  },
   methods: {
     ...mapActions(['openMessage', 'messageContent', 'fetchPost', 'updatePost']),
 
     onSubmit(e) {
       e.preventDefault();
 
-      const updatedArticle = {
+      let updatedArticle = {
         title: this.title,
         body: this.body,
         author: this.singlePost.author,
@@ -59,15 +53,25 @@ export default {
       };
 
       //  Update post
-      this.updatePost(this.currentActivePostId, updatedArticle);
+      this.updatePost(updatedArticle);
       console.log('fromForm', updatedArticle);
       //  Open message
-      this.messageContent({
-        title: 'Success',
-        body: 'Article updated successfully',
-        isSuccess: true
-      });
-
+      if (this.postsError) {
+        this.messageContent({
+          title: 'Error',
+          body: 'Something went wrong',
+          isSuccess: false,
+          isError: true
+        });
+        return;
+      } else {
+        this.messageContent({
+          title: 'Success',
+          body: 'Article updated successfully',
+          isSuccess: true,
+          isError: false
+        });
+      }
       this.openMessage();
     }
   },

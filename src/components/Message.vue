@@ -59,44 +59,50 @@ export default {
       'messageContent',
       'closeModal',
       'deletePost',
-      'clearMessage'
+      'clearMessage',
+      'clearError'
     ]),
-    // -- Clear and close message
+    // -- Clear message & close modal
     clearCloseMessage() {
-      // Clear message
-      this.messageContent({
-        title: '',
-        body: '',
-        isDelete: true,
-        isSuccess: false,
-        isError: false
-      });
-      //   Close message
-      this.closeMessage();
-      //   Close modal
+      this.clearMessage();
       this.closeModal();
     },
 
     // -- Delete article
     deleteArticle() {
+      // Delete
+      this.clearError();
       this.deletePost(this.currentActivePostId);
 
-      this.messageContent({
-        title: 'Success',
-        body: 'Your post has been deleted.',
-        isDelete: false,
-        isSuccess: true,
-        isError: false
-      });
-      // Navigate to Posts page
-      this.$router.push('/');
+      // Check if there is an error
+      if (this.postsError) {
+        this.messageContent({
+          title: 'Error',
+          body: 'Something went wrong. Please try again.',
+          isDelete: false,
+          isSuccess: false,
+          isError: true
+        });
+        return;
+      } else {
+        this.messageContent({
+          title: 'Success',
+          body: 'Your post has been deleted.',
+          isDelete: false,
+          isSuccess: true,
+          isError: false
+        });
+        // Navigate to Posts page
+        this.$router.push('/');
+      }
     }
   },
 
   computed: {
-    ...mapGetters(['messageState', 'currentActivePostId'])
+    ...mapGetters(['messageState', 'currentActivePostId', 'postsError'])
   },
   unmounted() {
+    this.clearError();
     this.clearMessage();
   }
 };
