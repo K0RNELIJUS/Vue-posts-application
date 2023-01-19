@@ -126,7 +126,7 @@ export default {
 </script>
 
 <style>
-/* .full-height {
+.full-height {
   height: calc(100vh);
-} */
+}
 </style>
