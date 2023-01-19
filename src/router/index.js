@@ -12,14 +12,6 @@ const routes = [
     name: 'single-post-page',
     path: '/article/:id',
     component: SinglePostPage
-    // beforeRouerEnter(to, from, next) {
-    //   const postExists = this.allPosts.some(post => post.id === this.id);
-    //   if (!postExists) {
-    //     next({ name: 'not-found' });
-    //   } else {
-    //     next();
-    //   }
-    // },
   },
 
   {
@@ -28,8 +20,8 @@ const routes = [
     component: NotFound
   },
   {
-    name: '404',
-    path: '/404',
+    name: 'error',
+    path: '/error',
     component: NotFound
   }
 ];
