@@ -67,13 +67,14 @@ const actions = {
     commit('RESET_SINGLE_POST');
   },
 
-  async updatePost({ commit }, id, updatedPost) {
+  async updatePost({ commit }, updatedPost) {
     try {
-      const { data } = await axios.put(`http://localhost:3000/articles/${id}`, {
+      const { data } = await axios.put(
+        `http://localhost:3000/articles/${updatedPost.id}`,
         updatedPost
-      });
-      commit('UPDATE_POST', data);
+      );
       console.log('form Action', data);
+      commit('UPDATE_POST', data);
     } catch (error) {
       commit('SET_ERROR', error.message);
     }
@@ -81,6 +82,10 @@ const actions = {
   // Set current active post id
   setCurrentActivePostId({ commit }, id) {
     commit('SET_CURRENT_ACTIVE_POST_ID', id);
+  },
+  // Reset error
+  clearError({ commit }) {
+    commit('SET_ERROR', '');
   }
 };
 
