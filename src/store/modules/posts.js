@@ -5,23 +5,39 @@ const state = {
   posts: [],
   singlePost: {},
   currentActivePostId: '',
+  postsInTotal: 0,
   error: ''
 };
 
 // --- Getters
 const getters = {
-  allPosts: state => state.posts,
+  paginatedPosts: state => state.posts,
   singlePost: state => state.singlePost,
   currentActivePostId: state => state.currentActivePostId,
-  postsError: state => state.error
+  postsError: state => state.error,
+  postsInTotal: state => state.postsInTotal
 };
 
 //  --- Actions
 const actions = {
-  async fetchPosts({ commit }) {
+  // async fetchPosts({ commit }) {
+  //   try {
+  //     const { data } = await axios.get('http://localhost:3000/articles');
+  //     commit('SET_POSTS', data);
+  //   } catch (error) {
+  //     commit('SET_ERROR', error.message);
+  //   }
+  // },
+
+  async fetchPaginatedPosts({ commit }, pagination) {
     try {
-      const { data } = await axios.get('http://localhost:3000/articles');
-      commit('SET_POSTS', data);
+      const res = await axios.get(
+        `http://localhost:3000/articles?_page=${pagination.page}&_limit=${pagination.limit}&q=${pagination.searchTerm}`,
+        { headers: 'X-Total-Count' }
+      );
+      commit('SET_POSTS', res.data);
+      commit('SET_POSTS_IN_TOTAL', res.headers['x-total-count']);
+      console.log('headers x-total-count', res.headers['x-total-count']);
     } catch (error) {
       commit('SET_ERROR', error.message);
     }
@@ -112,7 +128,11 @@ const mutations = {
   // Set current active post id
   SET_CURRENT_ACTIVE_POST_ID: (state, id) => (state.currentActivePostId = id),
   // Error
-  SET_ERROR: (state, error) => (state.error = error)
+  SET_ERROR: (state, error) => (state.error = error),
+  // Set posts in total
+  SET_POSTS_IN_TOTAL: (state, postsInTotal) => {
+    state.postsInTotal = postsInTotal;
+  }
 };
 
 export default {

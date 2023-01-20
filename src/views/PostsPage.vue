@@ -14,7 +14,7 @@
       <div class="columns is-flex-wrap-wrap">
         <div
           class="column is-flex is-justify-content-center"
-          v-if="!allPosts.length"
+          v-if="!paginatedPosts.length"
         >
           <h4 class="is-size-4">No articles posted yet</h4>
         </div>
@@ -57,11 +57,11 @@ export default {
 
   methods: {
     ...mapActions([
-      'fetchPosts',
       'fetchAuthors',
       'openModal',
       'createMode',
-      'closeMessage'
+      'closeMessage',
+      'fetchPaginatedPosts'
     ]),
     // Open modal and set mode to create
     openModalSetMode() {
@@ -86,13 +86,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['allPosts', 'allAuthors']),
+    ...mapGetters(['paginatedPosts', 'allAuthors', 'postsInTotal']),
     // Pagination and Search
     totalPages() {
       if (this.searchTerm === '') {
-        return Math.ceil(this.allPosts.length / this.postsPerPage);
+        return Math.ceil(this.postsInTotal / this.postsPerPage);
       } else {
-        let filteredPosts = this.allPosts.filter(
+        let filteredPosts = this.paginatedPosts.filter(
           post =>
             post.title.toLowerCase().includes(this.searchTerm) ||
             post.body.toLowerCase().includes(this.searchTerm)
@@ -101,7 +101,7 @@ export default {
       }
     },
     filteredPosts() {
-      let filteredPosts = this.allPosts;
+      let filteredPosts = this.paginatedPosts;
       if (this.searchTerm) {
         filteredPosts = filteredPosts.filter(
           post =>
@@ -112,15 +112,38 @@ export default {
             this.getAuthorName(post.author).includes(this.searchTerm)
         );
       }
-      const start = (this.currentPage - 1) * this.postsPerPage;
-      const end = start + this.postsPerPage;
-      return filteredPosts.slice(start, end);
+      return filteredPosts;
     }
   },
 
   created() {
     this.fetchAuthors();
-    this.fetchPosts();
+    // this.fetchPosts();
+    this.fetchPaginatedPosts({
+      page: this.currentPage,
+      limit: this.postsPerPage,
+      searchTerm: this.searchTerm
+    });
+  },
+  watch: {
+    currentPage(newPage, oldPage) {
+      if (newPage !== oldPage) {
+        this.fetchPaginatedPosts({
+          page: newPage,
+          limit: this.postsPerPage,
+          searchTerm: this.searchTerm
+        });
+      }
+    },
+    searchTerm(newTerm, oldTerm) {
+      if (newTerm !== oldTerm) {
+        this.fetchPaginatedPosts({
+          page: this.currentPage,
+          limit: this.postsPerPage,
+          searchTerm: newTerm
+        });
+      }
+    }
   }
 };
 </script>
