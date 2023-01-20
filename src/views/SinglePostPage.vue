@@ -30,11 +30,12 @@ export default {
       id: this.$route.params.id
     };
   },
+  // Redirect to the error page if the post id does not exist
   beforeRouteEnter(to, from, next) {
     const postId = to.params.id;
     // Check if the post id exists in the data store
     const callback = function(vm) {
-      if (!vm.allPosts.find(post => post.id == postId)) {
+      if (!vm.paginatedPosts.find(post => post.id == postId)) {
         // If the post id does not exist, navigate to the error page
         next({ name: 'error' });
       } else {
@@ -46,7 +47,7 @@ export default {
   methods: { ...mapActions(['fetchPost', 'fetchAuthors', 'openModal']) },
 
   computed: {
-    ...mapGetters(['singlePost', 'allAuthors', 'postsError', 'allPosts'])
+    ...mapGetters(['singlePost', 'allAuthors', 'postsError', 'paginatedPosts'])
   },
 
   created() {
