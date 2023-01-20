@@ -14,10 +14,17 @@
       <div class="columns is-flex-wrap-wrap">
         <div
           class="column is-flex is-justify-content-center"
-          v-if="!paginatedPosts.length"
+          v-if="!paginatedPosts.length && !searchTerm.length"
         >
           <h4 class="is-size-4">No articles posted yet</h4>
         </div>
+        <div
+          class="column is-flex is-justify-content-center"
+          v-if="!paginatedPosts.length && searchTerm.length"
+        >
+          <h4 class="is-size-4">Nothing found...</h4>
+        </div>
+
         <div
           v-for="post in filteredPosts"
           :key="post.id"
