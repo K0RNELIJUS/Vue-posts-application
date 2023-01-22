@@ -94,6 +94,10 @@ export default {
 
   computed: {
     ...mapGetters(['paginatedPosts', 'allAuthors', 'postsInTotal']),
+
+    pageLength() {
+      return this.paginatedPosts.length;
+    },
     // Pagination and Search
     totalPages() {
       if (this.searchTerm === '') {
@@ -125,14 +129,15 @@ export default {
 
   created() {
     this.fetchAuthors();
-    // this.fetchPosts();
     this.fetchPaginatedPosts({
       page: this.currentPage,
       limit: this.postsPerPage,
       searchTerm: this.searchTerm
     });
   },
+
   watch: {
+    // If current page changes, fetch new posts
     currentPage(newPage, oldPage) {
       if (newPage !== oldPage) {
         this.fetchPaginatedPosts({
@@ -142,6 +147,7 @@ export default {
         });
       }
     },
+    // If search term changes, fetch new posts
     searchTerm(newTerm, oldTerm) {
       if (newTerm !== oldTerm) {
         this.fetchPaginatedPosts({
@@ -149,6 +155,20 @@ export default {
           limit: this.postsPerPage,
           searchTerm: newTerm
         });
+      }
+    },
+    // If page length changes, fetch new posts
+    pageLength(newLength, oldLength) {
+      if (newLength !== oldLength) {
+        this.fetchPaginatedPosts({
+          page: this.currentPage,
+          limit: this.postsPerPage,
+          searchTerm: this.searchTerm
+        });
+      }
+      // If page length is 0 and current page is not 1, go to previous page
+      if (newLength === 0 && this.currentPage > 1) {
+        this.currentPage = this.currentPage - 1;
       }
     }
   }
