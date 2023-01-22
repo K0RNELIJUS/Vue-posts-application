@@ -37,7 +37,6 @@ const actions = {
       );
       commit('SET_POSTS', res.data);
       commit('SET_POSTS_IN_TOTAL', res.headers['x-total-count']);
-      console.log('headers x-total-count', res.headers['x-total-count']);
     } catch (error) {
       commit('SET_ERROR', error.message);
     }
@@ -64,6 +63,7 @@ const actions = {
       commit('REMOVE_POST', id);
     } catch (error) {
       commit('SET_ERROR', error.message);
+      console.log('state error', error.message);
     }
   },
 
@@ -79,6 +79,11 @@ const actions = {
     }
   },
 
+  findSinglePost({ commit }, id) {
+    const post = state.posts.find(post => post.id == id);
+    commit('SET_SINGLE_POST', post);
+  },
+
   resetSinglePost({ commit }) {
     commit('RESET_SINGLE_POST');
   },
@@ -89,7 +94,6 @@ const actions = {
         `http://localhost:3000/articles/${updatedPost.id}`,
         updatedPost
       );
-      console.log('form Action', data);
       commit('UPDATE_POST', data);
     } catch (error) {
       commit('SET_ERROR', error.message);
@@ -107,9 +111,9 @@ const actions = {
 
 // --- Mutations
 const mutations = {
-  SET_POSTS: (state, posts) => (state.posts = posts.reverse()),
+  SET_POSTS: (state, posts) => (state.posts = posts),
   // Create new post
-  ADD_NEW_POST: (state, newPost) => state.posts.unshift(newPost),
+  ADD_NEW_POST: (state, newPost) => state.posts.push(newPost),
   // Delete post
   REMOVE_POST: (state, id) => {
     state.posts = state.posts.filter(post => post.id !== id);
@@ -119,7 +123,6 @@ const mutations = {
     const index = state.posts.findIndex(post => post.id === updatedPost.id);
     if (index !== -1) {
       state.posts.splice(index, 1, updatedPost);
-      console.log('from mutation', updatedPost);
     }
   },
   // Single post

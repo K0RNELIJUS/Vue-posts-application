@@ -12,7 +12,7 @@
         <div class="media-content">
           <p class="title is-6">{{ findAuthor }}</p>
         </div>
-        <time datetime="2016-1-1">{{ latestDate }}</time>
+        <time>{{ latestDate }}</time>
       </div>
       <slot v-if="isPrimary" class="card-content">
         <div class="content">{{ post.body }}</div>
@@ -30,6 +30,11 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
   props: ['isPrimary', 'post', 'authors'],
+  data() {
+    return {
+      title: this.post.title
+    };
+  },
   methods: {
     ...mapActions([
       'openModal',
@@ -39,8 +44,9 @@ export default {
       'clearMessage',
       'setCurrentActivePostId',
       'editMode',
-      'fetchPost',
-      'clearError'
+      'clearError',
+      'findSinglePost',
+      'fetchPost'
     ]),
     // -- Delete post
     deletePostSetMsg() {
@@ -61,7 +67,7 @@ export default {
     // -- Edit post
     editPost() {
       this.setCurrentActivePostId(this.post.id);
-      this.fetchPost(this.currentActivePostId);
+      this.findSinglePost(this.currentActivePostId);
       this.clearError();
       this.openModal();
       this.editMode();
