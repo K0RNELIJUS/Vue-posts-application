@@ -3,8 +3,8 @@
     <div v-if="!isEditMode" class="field">
       <label class="label">Author</label>
       <div class="control">
-        <div class="select">
-          <select v-model="authorName" required>
+        <div class="select" :class="authorSelectStyle">
+          <select v-model="authorName">
             <option
               v-for="author in allAuthors"
               :key="author.id"
@@ -12,6 +12,12 @@
               >{{ author.name }}</option
             >
           </select>
+        </div>
+        <div
+          v-if="validationMessages.authorName && !initialSubmit"
+          class="has-text-danger"
+        >
+          {{ validationMessages.authorName }}
         </div>
       </div>
     </div>
@@ -21,11 +27,17 @@
       <div class="control">
         <input
           class="input"
+          :class="titleInputStyle"
           type="text"
           v-model="title"
           placeholder="Title"
-          required
         />
+      </div>
+      <div
+        v-if="validationMessages.title && !initialSubmit"
+        class="has-text-danger"
+      >
+        {{ validationMessages.title }}
       </div>
     </div>
 
@@ -33,11 +45,17 @@
       <label class="label">Article</label>
       <div class="control">
         <textarea
+          :class="bodyInputStyle"
           class="textarea"
           v-model="body"
           placeholder="Text"
-          required
         ></textarea>
+      </div>
+      <div
+        v-if="validationMessages.body && !initialSubmit"
+        class="has-text-danger"
+      >
+        {{ validationMessages.body }}
       </div>
     </div>
 
@@ -53,11 +71,78 @@
 import currentDateTime from '../services/currenDateTime';
 import { mapGetters, mapActions } from 'vuex';
 export default {
+  data() {
+    return {
+      title: '',
+      body: '',
+      authorName: '',
+      authorSelectStyle: '',
+      titleInputStyle: '',
+      bodyInputStyle: '',
+      validationMessages: {
+        authorName: 'Author is required',
+        title: 'Title is required',
+        body: 'Article text is required'
+      },
+      initialSubmit: true,
+      isFormValid: false
+    };
+  },
+  computed: {
+    ...mapGetters(['allAuthors', 'isEditMode'])
+  },
   methods: {
     ...mapActions(['addPost', 'openMessage', 'messageContent']),
 
+    validateInputs() {
+      if (this.initialSubmit) {
+        return;
+      }
+      let isAuthorNameValid;
+      let isTitleValid;
+      let isBodyValid;
+
+      if (this.authorName === '') {
+        this.authorSelectStyle = 'is-danger';
+        isAuthorNameValid = false;
+      } else {
+        this.authorSelectStyle = 'is-primary';
+        isAuthorNameValid = true;
+      }
+      if (this.title.length === 0) {
+        this.titleInputStyle = 'is-danger';
+        isTitleValid = false;
+      } else {
+        this.titleInputStyle = 'is-primary';
+        isTitleValid = true;
+      }
+
+      if (this.body.length === 0) {
+        this.bodyInputStyle = 'is-danger';
+        isBodyValid = false;
+      } else {
+        this.bodyInputStyle = 'is-primary';
+        isBodyValid = true;
+      }
+
+      this.validationMessages = {
+        authorName: isAuthorNameValid ? '' : 'Author is required',
+        title: isTitleValid ? '' : 'Title is required',
+        body: isBodyValid ? '' : 'Article text is required'
+      };
+
+      return isAuthorNameValid && isTitleValid && isBodyValid;
+    },
+
     onSubmit(e) {
       e.preventDefault();
+      this.initialSubmit = false;
+      this.validateInputs();
+
+      if (!this.validateInputs()) {
+        return;
+      }
+
       const newArticle = {
         title: this.title,
         body: this.body,
@@ -70,6 +155,7 @@ export default {
       this.addPost(newArticle);
 
       // Set message
+
       this.messageContent({
         title: 'Success',
         body: 'Article created successfully',
@@ -79,8 +165,17 @@ export default {
       this.openMessage();
     }
   },
-  computed: {
-    ...mapGetters(['allAuthors', 'isEditMode'])
+  mounted() {
+    if (!this.initialSubmit) {
+      this.$nextTick(() => {
+        this.validateInputs();
+      });
+    }
+  },
+  watch: {
+    authorName: 'validateInputs',
+    title: 'validateInputs',
+    body: 'validateInputs'
   }
 };
 </script>

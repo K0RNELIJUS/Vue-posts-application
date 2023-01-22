@@ -5,11 +5,17 @@
       <div class="control">
         <input
           class="input"
+          :class="titleInputStyle"
           type="text"
           v-model="title"
           placeholder="Title"
-          required
         />
+      </div>
+      <div
+        v-if="validationMessages.title && !initialSubmit"
+        class="has-text-danger"
+      >
+        {{ validationMessages.title }}
       </div>
     </div>
 
@@ -18,10 +24,16 @@
       <div class="control">
         <textarea
           class="textarea"
+          :class="bodyInputStyle"
           v-model="body"
           placeholder="Text"
-          required
         ></textarea>
+      </div>
+      <div
+        v-if="validationMessages.body && !initialSubmit"
+        class="has-text-danger"
+      >
+        {{ validationMessages.body }}
       </div>
     </div>
 
@@ -37,11 +49,72 @@
 import currentDateTime from '../services/currenDateTime';
 import { mapGetters, mapActions } from 'vuex';
 export default {
+  data() {
+    return {
+      title: '',
+      body: '',
+      authorSelectStyle: '',
+      titleInputStyle: '',
+      bodyInputStyle: '',
+      validationMessages: {
+        title: 'Title is required',
+        body: 'Article text is required'
+      },
+      initialSubmit: true,
+      isFormValid: false
+    };
+  },
+  computed: {
+    ...mapGetters([
+      'allAuthors',
+      'currentActivePostId',
+      'singlePost',
+      'postsError'
+    ])
+  },
   methods: {
     ...mapActions(['openMessage', 'messageContent', 'fetchPost', 'updatePost']),
 
+    validateInputs() {
+      if (this.initialSubmit) {
+        return;
+      }
+
+      let isTitleValid;
+      let isBodyValid;
+
+      if (this.title.length === 0) {
+        this.titleInputStyle = 'is-danger';
+        isTitleValid = false;
+      } else {
+        this.titleInputStyle = 'is-primary';
+        isTitleValid = true;
+      }
+
+      if (this.body.length === 0) {
+        this.bodyInputStyle = 'is-danger';
+        isBodyValid = false;
+      } else {
+        this.bodyInputStyle = 'is-primary';
+        isBodyValid = true;
+      }
+
+      this.validationMessages = {
+        title: isTitleValid ? '' : 'Title is required',
+        body: isBodyValid ? '' : 'Article text is required'
+      };
+
+      return isTitleValid && isBodyValid;
+    },
+
     onSubmit(e) {
       e.preventDefault();
+      this.initialSubmit = false;
+      this.validateInputs();
+
+      if (!this.validateInputs()) {
+        return;
+      }
 
       let updatedArticle = {
         title: this.title,
@@ -54,34 +127,45 @@ export default {
 
       //  Update post
       this.updatePost(updatedArticle);
-      console.log('fromForm', updatedArticle);
       //  Open message
       if (this.postsError) {
+        console.log('error', this.postsError);
         this.messageContent({
           title: 'Error',
           body: 'Something went wrong',
+          isDelete: false,
           isSuccess: false,
           isError: true
         });
         return;
       } else {
+        console.log('success', this.error);
         this.messageContent({
           title: 'Success',
           body: 'Article updated successfully',
+          isDelete: false,
           isSuccess: true,
           isError: false
         });
       }
+
       this.openMessage();
     }
   },
-  computed: {
-    ...mapGetters(['allAuthors', 'currentActivePostId', 'singlePost'])
+  mounted() {
+    if (!this.initialSubmit) {
+      this.$nextTick(() => {
+        this.validateInputs();
+      });
+    }
   },
   created() {
     this.title = this.singlePost.title;
     this.body = this.singlePost.body;
-    console.log('from FormEdit created', this.singlePost.id);
+  },
+  watch: {
+    title: 'validateInputs',
+    body: 'validateInputs'
   }
 };
 </script>
