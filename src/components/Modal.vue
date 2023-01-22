@@ -35,7 +35,7 @@ export default {
       this.clearMessage();
     }
   },
-  computed: mapGetters(['messageState', 'clearMessage']),
+  computed: mapGetters(['messageState']),
   components: {
     Message
   }
