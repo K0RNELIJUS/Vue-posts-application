@@ -71,7 +71,7 @@ export default {
     // -- Delete article
     deleteArticle() {
       // Delete
-      this.clearError();
+      // this.clearError();
       this.deletePost(this.currentActivePostId);
 
       // Check if there is an error
