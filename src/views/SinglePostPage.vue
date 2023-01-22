@@ -44,7 +44,7 @@ export default {
     };
     next(callback);
   },
-  methods: { ...mapActions(['fetchPost', 'fetchAuthors', 'openModal']) },
+  methods: { ...mapActions(['findSinglePost', 'fetchAuthors', 'openModal']) },
 
   computed: {
     ...mapGetters(['singlePost', 'allAuthors', 'postsError', 'paginatedPosts'])
@@ -52,13 +52,18 @@ export default {
 
   created() {
     this.fetchAuthors();
-    this.fetchPost(this.id);
+    this.findSinglePost(this.id);
   }
+  // infinite loop
+  // updated() {
+  //   this.fetchAuthors();
+  //   this.findSinglePost(this.id);
+  // }
 };
 </script>
 
 <style>
 .fullheight {
-  height: calc(100vh - 380px);
+  height: 100vh;
 }
 </style>
