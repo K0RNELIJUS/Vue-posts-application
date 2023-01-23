@@ -20,15 +20,7 @@ const getters = {
 
 //  --- Actions
 const actions = {
-  // async fetchPosts({ commit }) {
-  //   try {
-  //     const { data } = await axios.get('http://localhost:3000/articles');
-  //     commit('SET_POSTS', data);
-  //   } catch (error) {
-  //     commit('SET_ERROR', error.message);
-  //   }
-  // },
-
+  // Fetch paginated posts
   async fetchPaginatedPosts({ commit }, pagination) {
     try {
       const res = await axios.get(
@@ -53,6 +45,7 @@ const actions = {
       commit('ADD_NEW_POST', data);
     } catch (error) {
       commit('SET_ERROR', error.message);
+      console.log('state error', error.message);
     }
   },
 
@@ -63,7 +56,6 @@ const actions = {
       commit('REMOVE_POST', id);
     } catch (error) {
       commit('SET_ERROR', error.message);
-      console.log('state error', error.message);
     }
   },
 
@@ -74,8 +66,8 @@ const actions = {
       const { data } = await axios.get(`http://localhost:3000/articles/${id}`);
       commit('SET_SINGLE_POST', data);
     } catch (error) {
-      console.log('state error', error.message);
       commit('SET_ERROR', error.message);
+      console.log('state error', error);
     }
   },
 
