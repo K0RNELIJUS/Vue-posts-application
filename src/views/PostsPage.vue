@@ -68,7 +68,10 @@ export default {
       'openModal',
       'createMode',
       'closeMessage',
-      'fetchPaginatedPosts'
+      'fetchPaginatedPosts',
+      'messageContent',
+      'openModal',
+      'openMessage'
     ]),
     // Open modal and set mode to create
     openModalSetMode() {
@@ -93,7 +96,12 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['paginatedPosts', 'allAuthors', 'postsInTotal']),
+    ...mapGetters([
+      'paginatedPosts',
+      'allAuthors',
+      'postsInTotal',
+      'postsError'
+    ]),
 
     pageLength() {
       return this.paginatedPosts.length;
@@ -127,13 +135,24 @@ export default {
     }
   },
 
-  created() {
-    this.fetchAuthors();
-    this.fetchPaginatedPosts({
+  async created() {
+    await this.fetchAuthors();
+    await this.fetchPaginatedPosts({
       page: this.currentPage,
       limit: this.postsPerPage,
       searchTerm: this.searchTerm
     });
+    if (this.postsError) {
+      this.messageContent({
+        title: 'Error',
+        body: 'Something went wrong',
+        isDelete: false,
+        isSuccess: false,
+        isError: true
+      });
+      this.openModal();
+      this.openMessage();
+    }
   },
 
   watch: {

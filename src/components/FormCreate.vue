@@ -1,6 +1,6 @@
 <template>
   <form class="form" @submit="onSubmit">
-    <div v-if="!isEditMode" class="field">
+    <div class="field">
       <label class="label">Author</label>
       <div class="control">
         <div class="select" :class="authorSelectStyle">
@@ -89,10 +89,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['allAuthors'])
+    ...mapGetters(['allAuthors', 'postsError'])
   },
   methods: {
-    ...mapActions(['addPost', 'openMessage', 'messageContent']),
+    ...mapActions(['addPost', 'openMessage', 'messageContent', 'clearMessage']),
 
     validateInputs() {
       if (this.initialSubmit) {
@@ -134,7 +134,7 @@ export default {
       return isAuthorNameValid && isTitleValid && isBodyValid;
     },
 
-    onSubmit(e) {
+    async onSubmit(e) {
       e.preventDefault();
       this.initialSubmit = false;
       this.validateInputs();
@@ -152,16 +152,27 @@ export default {
       };
 
       //  Add new post
-      this.addPost(newArticle);
-
+      await this.addPost(newArticle);
       // Set message
-
-      this.messageContent({
-        title: 'Success',
-        body: 'Article created successfully',
-        isSuccess: true
-      });
-
+      // this.clearMessage();
+      // Check if there is an error and display message
+      if (this.postsError) {
+        this.messageContent({
+          title: 'Error',
+          body: 'Something went wrong',
+          isDelete: false,
+          isSuccess: false,
+          isError: true
+        });
+      } else {
+        this.messageContent({
+          title: 'Success',
+          body: 'Post succesfully created',
+          isDelete: false,
+          isSuccess: true,
+          isError: false
+        });
+      }
       this.openMessage();
     }
   },
