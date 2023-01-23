@@ -157,8 +157,6 @@ export default {
         this.validateInputs();
       });
     }
-  },
-  created() {
     this.title = this.singlePost.title;
     this.body = this.singlePost.body;
   },
