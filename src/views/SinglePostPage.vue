@@ -44,15 +44,17 @@ export default {
     };
     next(callback);
   },
-  methods: { ...mapActions(['findSinglePost', 'fetchAuthors', 'openModal']) },
+  methods: {
+    ...mapActions(['findSinglePost', 'fetchAuthors', 'openModal'])
+  },
 
   computed: {
     ...mapGetters(['singlePost', 'allAuthors', 'postsError', 'paginatedPosts'])
   },
 
-  created() {
-    this.fetchAuthors();
-    this.findSinglePost(this.id);
+  async created() {
+    await this.fetchAuthors();
+    await this.findSinglePost(this.id);
   }
   // infinite loop
   // updated() {
