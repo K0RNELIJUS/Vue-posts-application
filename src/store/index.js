@@ -4,7 +4,6 @@ import posts from './modules/posts';
 import authors from './modules/authors';
 import modal from './modules/modal';
 import message from './modules/message';
-import form from './modules/form';
 
 Vue.use(Vuex);
 
@@ -13,7 +12,6 @@ export default new Vuex.Store({
     posts,
     authors,
     modal,
-    message,
-    form
+    message
   }
 });

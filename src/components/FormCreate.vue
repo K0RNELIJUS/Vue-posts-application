@@ -61,7 +61,7 @@
 
     <div class="control">
       <button class="button is-primary" type="submit">
-        {{ isEditMode ? 'Save' : 'Submit' }}
+        Submit
       </button>
     </div>
   </form>
@@ -89,7 +89,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['allAuthors', 'isEditMode'])
+    ...mapGetters(['allAuthors'])
   },
   methods: {
     ...mapActions(['addPost', 'openMessage', 'messageContent']),
