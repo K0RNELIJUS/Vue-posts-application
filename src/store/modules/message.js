@@ -27,8 +27,8 @@ const actions = {
   closeMessage({ commit }) {
     commit('CLOSE_MESSAGE');
   },
-  messageContent({ commit }, payload) {
-    commit('SET_MESSAGE', payload);
+  async messageContent({ commit }, payload) {
+    await commit('SET_MESSAGE', payload);
   },
   clearMessage({ commit }) {
     commit('CLOSE_MESSAGE');
