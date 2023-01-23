@@ -107,7 +107,7 @@ export default {
       return isTitleValid && isBodyValid;
     },
 
-    onSubmit(e) {
+    async onSubmit(e) {
       e.preventDefault();
       this.initialSubmit = false;
       this.validateInputs();
@@ -126,7 +126,7 @@ export default {
       };
 
       //  Update post
-      this.updatePost(updatedArticle);
+      await this.updatePost(updatedArticle);
       //  Open message
       if (this.postsError) {
         console.log('error', this.postsError);
@@ -137,7 +137,6 @@ export default {
           isSuccess: false,
           isError: true
         });
-        return;
       } else {
         console.log('success', this.error);
         this.messageContent({

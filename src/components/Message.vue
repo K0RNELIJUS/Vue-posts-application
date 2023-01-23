@@ -69,10 +69,9 @@ export default {
     },
 
     // -- Delete article
-    deleteArticle() {
-      // Delete
-      // this.clearError();
-      this.deletePost(this.currentActivePostId);
+    async deleteArticle() {
+      // Delete post
+      await this.deletePost(this.currentActivePostId);
 
       // Check if there is an error
       if (this.postsError) {
