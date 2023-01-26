@@ -47,6 +47,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import setStatusMessage from '../services/setStatusMessage';
 export default {
   data() {
     return {
@@ -73,25 +74,13 @@ export default {
       // Delete post
       await this.deletePost(this.currentActivePostId);
 
-      // Check if there is an error
-      if (this.postsError) {
-        this.messageContent({
-          title: 'Error',
-          body: 'Something went wrong. Please try again.',
-          isDelete: false,
-          isSuccess: false,
-          isError: true
-        });
-        return;
-      } else {
-        this.messageContent({
-          title: 'Success',
-          body: 'Your post has been deleted.',
-          isDelete: false,
-          isSuccess: true,
-          isError: false
-        });
-        // Navigate to Posts page
+      setStatusMessage(
+        this.postsError,
+        this.messageContent,
+        'Article has been deleted'
+      );
+
+      if (!this.postsError) {
         this.$router.push('/');
       }
     }

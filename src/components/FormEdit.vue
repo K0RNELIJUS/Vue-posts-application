@@ -48,6 +48,7 @@
 <script>
 import currentDateTime from '../services/currenDateTime';
 import { mapGetters, mapActions } from 'vuex';
+import setStatusMessage from '../services/setStatusMessage';
 export default {
   data() {
     return {
@@ -127,26 +128,12 @@ export default {
 
       //  Update post
       await this.updatePost(updatedArticle);
-      //  Open message
-      if (this.postsError) {
-        console.log('error', this.postsError);
-        this.messageContent({
-          title: 'Error',
-          body: 'Something went wrong',
-          isDelete: false,
-          isSuccess: false,
-          isError: true
-        });
-      } else {
-        console.log('success', this.error);
-        this.messageContent({
-          title: 'Success',
-          body: 'Article updated successfully',
-          isDelete: false,
-          isSuccess: true,
-          isError: false
-        });
-      }
+
+      setStatusMessage(
+        this.postsError,
+        this.messageContent,
+        'Article succesfully updated'
+      );
 
       this.openMessage();
     }

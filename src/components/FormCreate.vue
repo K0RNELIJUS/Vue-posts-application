@@ -5,6 +5,7 @@
       <div class="control">
         <div class="select" :class="authorSelectStyle">
           <select v-model="authorName">
+            <option value="" disabled selected hidden>Select name</option>
             <option
               v-for="author in allAuthors"
               :key="author.id"
@@ -69,6 +70,7 @@
 
 <script>
 import currentDateTime from '../services/currenDateTime';
+import setStatusMessage from '../services/setStatusMessage';
 import { mapGetters, mapActions } from 'vuex';
 export default {
   data() {
@@ -153,26 +155,13 @@ export default {
 
       //  Add new post
       await this.addPost(newArticle);
-      // Set message
-      // this.clearMessage();
-      // Check if there is an error and display message
-      if (this.postsError) {
-        this.messageContent({
-          title: 'Error',
-          body: 'Something went wrong',
-          isDelete: false,
-          isSuccess: false,
-          isError: true
-        });
-      } else {
-        this.messageContent({
-          title: 'Success',
-          body: 'Post succesfully created',
-          isDelete: false,
-          isSuccess: true,
-          isError: false
-        });
-      }
+
+      setStatusMessage(
+        this.postsError,
+        this.messageContent,
+        'Article succesfully created'
+      );
+
       this.openMessage();
     }
   },
