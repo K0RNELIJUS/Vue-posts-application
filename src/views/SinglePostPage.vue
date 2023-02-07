@@ -66,6 +66,6 @@ export default {
 
 <style>
 .fullheight {
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>

@@ -23,6 +23,6 @@ export default {
 
 <style>
 .fullheight {
-  height: calc(100vh - 380px);
+  min-height: 100vh;
 }
 </style>

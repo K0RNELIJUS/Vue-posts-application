@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section class="section full-height ">
+    <section class="section fullheight">
       <div
         class="is-flex is-justify-content-space-between is-flex-wrap-wrap-reverse"
       >
@@ -195,7 +195,7 @@ export default {
 </script>
 
 <style>
-.full-height {
-  height: calc(100vh);
+.fullheight {
+  min-height: 100vh;
 }
 </style>
